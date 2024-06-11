@@ -50,6 +50,17 @@ class TestPlantillaWord {
 	        assertEquals(wordDocument.convertTextFileToString("parrafo.txt"), paragraphs.get(2).getText());
 	       
 	    }
+	    /* Se verifica que los subtitulos estén en arial*/
+	    @Test
+	    public void whenParsingOutputDocument_thenSubtitlesArial() throws Exception {
+	        Path msWordPath = Paths.get("Quijote.docx");
+	        logger.info("path ",msWordPath);
+	        XWPFDocument document = new XWPFDocument(Files.newInputStream(msWordPath));
+	        List<XWPFParagraph> paragraphs = document.getParagraphs();
+	        document.close();
+	        assertEquals("Arial", paragraphs.get(1).getRuns().get(0).getFontName());	        
+	       
+	    }
 	}
 
 
